@@ -35,9 +35,9 @@ function appendOccupancy(occ) {
 	let day = d.getDay();
 	let time = e - d.setHours(0, 0, 0, 0);
 	
-	console.log(date);
-	console.log(day);
-	console.log(time);
+	// console.log(date);
+	// console.log(day);
+	// console.log(time);
 
 	entry = {
 		"date": date,
@@ -53,8 +53,8 @@ function appendOccupancy(occ) {
 
 // fetchOccupancy().then((occupancy) => console.log(occupancy));
 fetchOccupancy().then((occupancy) => {
-	console.log(occupancy);
+	// console.log(occupancy);
 	occupancyVal = extractOccupancy(occupancy);
-	console.log(occupancyVal);
+	// console.log(occupancyVal);
 	appendOccupancy(occupancyVal);
 });
