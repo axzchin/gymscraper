@@ -1,9 +1,6 @@
 const cheerio = require("cheerio");
 const url = 'https://sport.wp.st-andrews.ac.uk/';
 var fs = require('fs');
-const d = new Date();
-const e = new Date(d);
-
 var occupancyVal;
 
 
@@ -31,9 +28,11 @@ function appendOccupancy(occ) {
 	let occJSON = fs.readFileSync("occupancy.json", "utf-8");
 	let occStr = JSON.parse(occJSON);
 
+	const d = new Date();
+
 	let date = d.toISOString().split('T')[0];
-	let day = d.getDay();
-	let time = e - d.setHours(0, 0, 0, 0);
+	let day = d.getUTCDay();
+	let time = ms_SinceUTCMidnight(d);
 	
 	// console.log(date);
 	// console.log(day);
@@ -51,7 +50,11 @@ function appendOccupancy(occ) {
 	fs.writeFileSync("occupancy.json", occJSON, "utf-8");
 }
 
-// fetchOccupancy().then((occupancy) => console.log(occupancy));
+function ms_SinceUTCMidnight(d) {
+	const e = new Date(d);
+	return (e - d.setUTCHours(0, 0, 0, 0));
+}
+
 fetchOccupancy().then((occupancy) => {
 	// console.log(occupancy);
 	occupancyVal = extractOccupancy(occupancy);
