@@ -55,9 +55,19 @@ function ms_SinceUTCMidnight(d) {
 	return (e - d.setUTCHours(0, 0, 0, 0));
 }
 
-fetchOccupancy().then((occupancy) => {
-	// console.log(occupancy);
-	occupancyVal = extractOccupancy(occupancy);
-	// console.log(occupancyVal);
-	appendOccupancy(occupancyVal);
-});
+function tick() {
+	var mins = new Date().getUTCMinutes();
+	if (mins%15 == 0) {
+		console.log("hello there");
+		fetchOccupancy().then((occupancy) => {
+			// console.log(occupancy);
+			occupancyVal = extractOccupancy(occupancy);
+			// console.log(occupancyVal);
+			appendOccupancy(occupancyVal);
+		});
+	}
+}
+
+setInterval(tick, 60000);
+
+
