@@ -41,8 +41,8 @@ function appendOccupancy(occ) {
 	entry = {
 		"date": date,
 		"day": day,
-		"time_ms": time,
-		"occupancy": occ 
+		"time": time,
+		"occ": occ 
 	}
 
 	occStr.push(entry);
